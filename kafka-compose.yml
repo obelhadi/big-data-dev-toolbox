@@ -2,7 +2,7 @@ version: '3.1'
 services:
   zookeeper:
     image: wurstmeister/zookeeper
-    container_name: kafka_zookeeper
+    container_name: kafka-zookeeper
     ports:
       - "2181:2181"
   kafka:
@@ -18,8 +18,9 @@ services:
       KAFKA_ADVERTISED_PORT: 9092
 
   kafka-rest-proxy:
-    image: confluentinc/cp-kafka-rest:5.1.0
+    image: confluentinc/cp-kafka-rest:5.1.2
     hostname: kafka-rest-proxy
+    container_name: kafka-rest-proxy
     ports:
       - "8082:8082"
     environment:
@@ -34,6 +35,7 @@ services:
   kafka-topics-ui:
     image: landoop/kafka-topics-ui:0.9.4
     hostname: kafka-topics-ui
+    container_name: kafka-topics-ui
     ports:
       - "8000:8000"
     environment:
